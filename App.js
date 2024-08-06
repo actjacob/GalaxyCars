@@ -3,22 +3,15 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./Storage/store";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Category from "./Screens/Category";
+import Category from "./Screens/CategoryList";
 import HomePage from "./Screens/HomePage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CategoryOverview from "./Screens/CategoryOverview";
 
 export default function App() {
   const Drawer = createDrawerNavigator();
-  const Stack = createNativeStackNavigator();
 
-  function CategoryOverview() {
-    return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Category" component={Category}></Stack.Screen>
-      </Stack.Navigator>
-    );
-  }
   return (
     <>
       <Provider store={store}>
