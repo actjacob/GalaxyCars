@@ -5,7 +5,10 @@ export default function CategoryOverview() {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Categories" component={CategoryList}></Stack.Screen>
+      <Stack.Screen
+        name="Category List"
+        component={CategoryList}
+      ></Stack.Screen>
     </Stack.Navigator>
   );
 }

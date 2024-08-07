@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./Storage/store";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Category from "./Screens/CategoryList";
+import CategoryList from "./Screens/CategoryList";
 import HomePage from "./Screens/HomePage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

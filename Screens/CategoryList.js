@@ -1,9 +1,10 @@
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { useGetAllCategoryQuery } from "../Apis/categoryApi";
+import CategoryItem from "./CategoryItem";
 
 function CategoryList() {
   const { data, isloading } = useGetAllCategoryQuery(null);
-
+  console.log("data", data);
   if (isloading) {
     return (
       <View>
@@ -11,13 +12,13 @@ function CategoryList() {
       </View>
     );
   }
-
-  console.log("data");
-  console.log(data);
-
   return (
     <>
-      <FlatList></FlatList>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CategoryItem item={item}></CategoryItem>}
+      ></FlatList>
     </>
   );
 }
