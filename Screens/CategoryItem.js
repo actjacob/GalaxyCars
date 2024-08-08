@@ -1,16 +1,24 @@
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 function CategoryItem({ item }) {
-  console.log("item");
-  console.log(item);
+  const Navigation = useNavigation();
+  const VehiclesByCategoryIdHandler = () => {
+    Navigation.navigate(`Vehicles`, {
+      id: item.id,
+    });
+  };
+  const HandleClick = () => {
+    console.log("trigger handle click");
+  };
 
   if (!item) {
     return null; //item undefined veya null ise ,burada erken dönüş yapabilirsiniz
   }
 
   return (
-    <Pressable>
+    <Pressable onPress={VehiclesByCategoryIdHandler}>
       <Card style={styles.card}>
         <Card.Content>
           <Title>{item.categoryName} </Title>
