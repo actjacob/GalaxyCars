@@ -9,9 +9,6 @@ function CategoryItem({ item }) {
       id: item.id,
     });
   };
-  const HandleClick = () => {
-    console.log("trigger handle click");
-  };
 
   if (!item) {
     return null; //item undefined veya null ise ,burada erken dönüş yapabilirsiniz
