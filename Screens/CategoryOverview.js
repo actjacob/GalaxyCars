@@ -5,7 +5,7 @@ import Vehicles from "./VehicleScreens/Vehicles";
 export default function CategoryOverview() {
   const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen
         name="Category List"
         component={CategoryList}

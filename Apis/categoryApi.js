@@ -35,7 +35,7 @@ export const categoryApi = createApi({
         body: model.categoryModel,
       }),
     }),
-    GetVehicleByCategoryId: builder.query({
+    GetVehiclesByCategoryId: builder.query({
       query: (categoryId) => ({
         url: `Category/GetVehicles/${categoryId}`,
         method: "GET",
@@ -49,6 +49,6 @@ export const {
   useCreateCategoryMutation,
   useRemoveCategoryMutation,
   useUpdateCategoryMutation,
-  useGetVehicleByCategoryIdQuery,
+  useGetVehiclesByCategoryIdQuery,
 } = categoryApi;
 export default categoryApi;
