@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoryList from "../Screens/CategoryList";
 import Vehicles from "./VehicleScreens/Vehicles";
+import VehicleDetail from "./VehicleScreens/VehicleDetail";
 
 export default function CategoryOverview() {
   const Stack = createNativeStackNavigator();
@@ -11,6 +12,10 @@ export default function CategoryOverview() {
         component={CategoryList}
       ></Stack.Screen>
       <Stack.Screen name="Vehicles" component={Vehicles}></Stack.Screen>
+      <Stack.Screen
+        name="VehicleDetail"
+        component={VehicleDetail}
+      ></Stack.Screen>
     </Stack.Navigator>
   );
 }
