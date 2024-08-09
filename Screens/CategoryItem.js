@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 function CategoryItem({ item }) {
   const Navigation = useNavigation();
+
   const VehiclesByCategoryIdHandler = () => {
     Navigation.navigate(`Vehicles`, {
       id: item.id,
