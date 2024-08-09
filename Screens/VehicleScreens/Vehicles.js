@@ -3,9 +3,11 @@ import { useGetVehiclesByCategoryIdQuery } from "../../Apis/categoryApi";
 
 function Vehicles({ route, navigation }) {
   const selectedCategoryId = route.params?.id;
+  console.log(selectedCategoryId);
   const { data, isloading } =
     useGetVehiclesByCategoryIdQuery(selectedCategoryId);
   console.log("selectedCategoryId");
+  console.log(data);
 
   if (isloading) {
     return (
@@ -18,7 +20,7 @@ function Vehicles({ route, navigation }) {
   return (
     <>
       <FlatList
-        data={data.vehicles}
+        data={data?.vehicles} //data.vehicles :[]
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View>
