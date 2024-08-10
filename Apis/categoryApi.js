@@ -5,7 +5,7 @@ export const categoryApi = createApi({
   reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
     baseUrl:
-      "https://f027-176-90-181-66.ngrok-free.app/api/",
+      "https://da60-193-140-242-120.ngrok-free.app/api/",
   }),
 
   endpoints: (builder) => ({
