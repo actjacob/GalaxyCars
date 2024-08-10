@@ -15,4 +15,4 @@ function VehicleDetail({ route, navigation }) {
   );
 }
 
-export default VehicleDetail();
+export default VehicleDetail;
