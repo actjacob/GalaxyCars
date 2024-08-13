@@ -8,6 +8,8 @@ import HomePage from "./Screens/HomePage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoryOverview from "./Screens/CategoryOverview";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CategoryManage from "./Screens/Category/CategoryManage";
 
 export default function App() {
   const Drawer = createDrawerNavigator();

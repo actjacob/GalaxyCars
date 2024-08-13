@@ -3,6 +3,7 @@ import categoryApi from "../Apis/categoryApi";
 import vehicleApi from "../Apis/vehicleApi";
 import { vehicleReducer } from "./redux/vehicleSlice";
 import { categoryReducer } from "./redux/categorySlice";
+import accountApi from "../Apis/account";
 
 export const store = configureStore({
   reducer: {
@@ -11,10 +12,12 @@ export const store = configureStore({
 
     [categoryApi.reducerPath]: categoryApi.reducer,
     [vehicleApi.reducerPath]: vehicleApi.reducer,
+    [accountApi.reducerPath]: accountApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       categoryApi.middleware,
-      vehicleApi.middleware
+      vehicleApi.middleware,
+      accountApi.middleware
     ),
 });
