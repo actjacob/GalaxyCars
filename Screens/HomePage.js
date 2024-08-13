@@ -15,6 +15,7 @@ import CategoryManage from "./Category/CategoryManage";
 import VehicleManage from "./VehicleScreens/VehicleManage";
 import Home from "./Home";
 import { useState } from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 function HomePage() {
   const Tab = createBottomTabNavigator();
@@ -30,9 +31,14 @@ function HomePage() {
   return (
     <View style={{ flex: 1 }}>
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{ tabBarIcon: ({}) => <Ionicons name="home"></Ionicons> }}
+        />
         <Tab.Screen
           name="CategoryManage"
+          options={{ tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons> }}
           component={CategoryManage}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
@@ -40,7 +46,13 @@ function HomePage() {
             },
           })}
         />
-        <Tab.Screen name="VehicleManage" component={VehicleManage} />
+        <Tab.Screen
+          name="VehicleManage"
+          component={VehicleManage}
+          options={{
+            tabBarIcon: ({}) => <Ionicons name="car-sport"></Ionicons>,
+          }}
+        />
       </Tab.Navigator>
       <Modal visible={visibleModal} onRequestClose={removeModalClick}>
         <View style={styles.viewStyleOne}>
