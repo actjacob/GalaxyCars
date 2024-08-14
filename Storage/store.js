@@ -1,9 +1,9 @@
-import { configureStore, createReducer } from "@reduxjs/toolkit";
-import categoryApi from "../Apis/categoryApi";
-import vehicleApi from "../Apis/vehicleApi";
-import { vehicleReducer } from "./redux/vehicleSlice";
-import { categoryReducer } from "./redux/categorySlice";
-import accountApi from "../Apis/account";
+import { configureStore, createReducer } from "@reduxjs/toolkit"
+import categoryApi from "../Apis/categoryApi"
+import vehicleApi from "../Apis/vehicleApi"
+import { vehicleReducer } from "./redux/vehicleSlice"
+import { categoryReducer } from "./redux/categorySlice"
+import accountApi from "../Apis/accountApi"
 
 export const store = configureStore({
   reducer: {
@@ -20,4 +20,4 @@ export const store = configureStore({
       vehicleApi.middleware,
       accountApi.middleware
     ),
-});
+})

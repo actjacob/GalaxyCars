@@ -1,17 +1,18 @@
 import { View, Text, Alert, Modal, Button, StyleSheet, TextInput } from "react-native"
-import {
-  BottomTabBarHeightCallbackContext,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import CategoryManage from "./Category/CategoryManage"
 import VehicleManage from "./VehicleScreens/VehicleManage"
 import Home from "./Home"
 import { useState } from "react"
 import Ionicons from "react-native-vector-icons/Ionicons"
+import { useCheckIsTrueUserMutation } from "../Apis/accountApi"
 
 function HomePage() {
   const Tab = createBottomTabNavigator()
   const [visibleModal, setVisibleModal] = useState(false)
+
+  const [CheckIsTrueUser] = useCheckIsTrueUserMutation()
+
   const [userModel, setUserModel] = useState({
     email: "",
     password: "",
@@ -33,7 +34,13 @@ function HomePage() {
     console.log(userModel.email)
   }
 
-  const removeModalClick = () => {
+  const checkRoleClick = () => {
+    const loginModel = {
+      email: userModel.email,
+      password: userModel.password,
+    }
+
+    CheckIsTrueUser(loginModel).then((value) => console.log(value))
     setVisibleModal(false)
   }
   return (
@@ -62,7 +69,7 @@ function HomePage() {
           }}
         />
       </Tab.Navigator>
-      <Modal visible={visibleModal} onRequestClose={removeModalClick}>
+      <Modal visible={visibleModal}>
         <View style={styles.viewStyleOne}>
           <View style={styles.viewStyleTwo}>
             <TextInput
@@ -77,7 +84,7 @@ function HomePage() {
             ></TextInput>
           </View>
         </View>
-        <Button onPress={removeModalClick} title="Close Modal"></Button>
+        <Button onPress={checkRoleClick} title="Check Role"></Button>
       </Modal>
     </View>
   )

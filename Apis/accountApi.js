@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useGetVehicleByIdQuery } from "./vehicleApi";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { useGetVehicleByIdQuery } from "./vehicleApi"
 
 export const accountApi = createApi({
   reducerPath: "accountApi",
@@ -16,7 +16,7 @@ export const accountApi = createApi({
       }),
     }),
   }),
-});
+})
 
-export const { useCheckIsTrueUserMutation } = accountApi;
-export default accountApi;
+export const { useCheckIsTrueUserMutation } = accountApi
+export default accountApi
