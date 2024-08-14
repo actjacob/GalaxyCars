@@ -6,8 +6,6 @@ function VehicleDetail({ route, navigation }) {
   const vehicleId = route.params?.vehicleId;
   const { data, isLoading } = useGetVehicleByIdQuery(vehicleId);
 
-  console.log("data");
-  console.log(data);
 
   if (isLoading) {
     return (

@@ -6,13 +6,10 @@ import VehicleDetail from "./VehicleDetail";
 
 function Vehicles({ route, navigation }) {
   const selectedCategoryId = route.params?.id;
-  console.log(selectedCategoryId);
+
   const { data, isloading } =
     useGetVehiclesByCategoryIdQuery(selectedCategoryId);
   const Navigation = useNavigation();
-
-  // console.log("selectedCategoryId");
-  // console.log(data);
 
   const handlePressClick = (id) => {
     Navigation.navigate(`VehicleDetail`, {

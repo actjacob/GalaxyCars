@@ -4,8 +4,6 @@ import CategoryItem from "./CategoryItem";
 
 function CategoryList() {
   const { data, isloading } = useGetAllCategoryQuery(null);
-  console.log("data");
-  console.log(data);
 
   if (isloading) {
     return (
