@@ -27,7 +27,7 @@ function HomePage() {
     password: "",
   });
 
-  const handleCategoryClick = () => {
+  const handleModalClick = () => {
     setVisibleModal(true);
   };
 
@@ -39,6 +39,11 @@ function HomePage() {
       };
     });
   }
+
+  const GoBack = () => {
+    Navigation.navigate("Home");
+    setVisibleModal(false);
+  };
 
   const checkRoleClick = async () => {
     const loginModel = {
@@ -71,16 +76,21 @@ function HomePage() {
           component={CategoryManage}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
-              handleCategoryClick();
+              handleModalClick();
             },
           })}
         />
         <Tab.Screen
           name="VehicleManage"
-          component={VehicleManage}
           options={{
             tabBarIcon: ({}) => <Ionicons name="car-sport"></Ionicons>,
           }}
+          component={VehicleManage}
+          listeners={({ navigation, route }) => ({
+            tabPress: (e) => {
+              handleModalClick();
+            },
+          })}
         />
       </Tab.Navigator>
       <Modal visible={visibleModal}>
@@ -99,6 +109,7 @@ function HomePage() {
           </View>
         </View>
         <Button onPress={checkRoleClick} title="Check Role"></Button>
+        <Button onPress={GoBack} title="Go Back"></Button>
       </Modal>
     </View>
   );
