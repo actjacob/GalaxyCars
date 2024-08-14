@@ -1,10 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { useGetVehicleByIdQuery } from "./vehicleApi"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { useGetVehicleByIdQuery } from "./vehicleApi";
 
 export const accountApi = createApi({
   reducerPath: "accountApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://e5bf-193-140-242-120.ngrok-free.app/api/",
+    baseUrl: "https://d646-2a02-e0-6a0f-2900-4806-5c65-e448-4503.ngrok-free.app/api/",
   }),
 
   endpoints: (builder) => ({
@@ -16,7 +16,7 @@ export const accountApi = createApi({
       }),
     }),
   }),
-})
+});
 
-export const { useCheckIsTrueUserMutation } = accountApi
-export default accountApi
+export const { useCheckIsTrueUserMutation } = accountApi;
+export default accountApi;

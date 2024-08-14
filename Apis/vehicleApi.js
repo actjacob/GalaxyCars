@@ -1,9 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 export const VehicleApi = createApi({
   reducerPath: "VehicleApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://e5bf-193-140-242-120.ngrok-free.app/api/",
+    baseUrl: "https://d646-2a02-e0-6a0f-2900-4806-5c65-e448-4503.ngrok-free.app/api/",
   }),
   endpoints: (builder) => ({
     GetAllVehicle: builder.query({
@@ -40,11 +40,5 @@ export const VehicleApi = createApi({
   }),
 });
 
-export const {
-  useGetAllVehicleQuery,
-  useCreateVehicleMutation,
-  useRemoveVehicleMutation,
-  useUpdateVehicleMutation,
-  useGetVehicleByIdQuery,
-} = VehicleApi;
+export const {useGetAllVehicleQuery, useCreateVehicleMutation, useRemoveVehicleMutation, useUpdateVehicleMutation, useGetVehicleByIdQuery} = VehicleApi;
 export default VehicleApi;

@@ -1,20 +1,15 @@
-import {
-  View,
-  Text,
-  Alert,
-  Modal,
-  Button,
-  StyleSheet,
-  TextInput,
-} from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {View, Text, Alert, Modal, Button, StyleSheet, TextInput} from "react-native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import CategoryManage from "./Category/CategoryManage";
-import VehicleManage from "./VehicleScreens/VehicleManage";
 import Home from "./Home";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import {useEffect, useState} from "react";
+import {useNavigation} from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useCheckIsTrueUserMutation } from "../Apis/accountApi";
+import {useCheckIsTrueUserMutation} from "../Apis/accountApi";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import VehicleManage from "./VehicleScreens/VehicleManage";
+import VehicleAddOrUpdate from "./VehicleScreens/VehicleAddOrUpdate";
+import VehicleCRUD from "./VehicleScreens/VehicleCRUD";
 
 function HomePage() {
   const Tab = createBottomTabNavigator();
@@ -22,6 +17,7 @@ function HomePage() {
   const [CheckIsTrueUser] = useCheckIsTrueUserMutation();
   const [checkUser, setCheckUser] = useState(false);
   const Navigation = useNavigation();
+  const Stack = createNativeStackNavigator();
   const [userModel, setUserModel] = useState({
     email: "",
     password: "",
@@ -63,30 +59,26 @@ function HomePage() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{ tabBarIcon: ({}) => <Ionicons name="home"></Ionicons> }}
-        />
+    <View style={{flex: 1}}>
+      <Tab.Navigator screenOptions={{headerShown: true}}>
+        <Tab.Screen name="Home" component={Home} options={{tabBarIcon: ({}) => <Ionicons name="home"></Ionicons>}} />
         <Tab.Screen
           name="CategoryManage"
-          options={{ tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons> }}
+          options={{tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons>}}
           component={CategoryManage}
-          listeners={({ navigation, route }) => ({
+          listeners={({navigation, route}) => ({
             tabPress: (e) => {
               handleModalClick();
             },
           })}
         />
         <Tab.Screen
-          name="VehicleManage"
+          name="VehicleCRUD"
           options={{
             tabBarIcon: ({}) => <Ionicons name="car-sport"></Ionicons>,
           }}
-          component={VehicleManage}
-          listeners={({ navigation, route }) => ({
+          component={VehicleCRUD}
+          listeners={({navigation, route}) => ({
             tabPress: (e) => {
               handleModalClick();
             },
@@ -96,16 +88,10 @@ function HomePage() {
       <Modal visible={visibleModal}>
         <View style={styles.viewStyleOne}>
           <View style={styles.viewStyleTwo}>
-            <TextInput
-              placeholder="Enter Your Mail"
-              onChangeText={inputChangeHandler.bind(this, "email")}
-            ></TextInput>
+            <TextInput placeholder="Enter Your Mail" onChangeText={inputChangeHandler.bind(this, "email")}></TextInput>
           </View>
           <View style={styles.viewStyleTwo}>
-            <TextInput
-              placeholder="Enter Your Password"
-              onChangeText={inputChangeHandler.bind(this, "password")}
-            ></TextInput>
+            <TextInput placeholder="Enter Your Password" onChangeText={inputChangeHandler.bind(this, "password")}></TextInput>
           </View>
         </View>
         <Button onPress={checkRoleClick} title="Check Role"></Button>
