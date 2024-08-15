@@ -1,12 +1,12 @@
-import {View, Text, Alert, Modal, Button, StyleSheet, TextInput} from "react-native";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import { View, Text, Alert, Modal, Button, StyleSheet, TextInput } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CategoryManage from "./Category/CategoryManage";
 import Home from "./Home";
-import {useEffect, useState} from "react";
-import {useNavigation} from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {useCheckIsTrueUserMutation} from "../Apis/accountApi";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import { useCheckIsTrueUserMutation } from "../Apis/accountApi";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import VehicleManage from "./VehicleScreens/VehicleManage";
 import VehicleAddOrUpdate from "./VehicleScreens/VehicleAddOrUpdate";
 import VehicleCRUD from "./VehicleScreens/VehicleCRUD";
@@ -59,14 +59,14 @@ function HomePage() {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <Tab.Navigator screenOptions={{headerShown: true}}>
-        <Tab.Screen name="Home" component={Home} options={{tabBarIcon: ({}) => <Ionicons name="home"></Ionicons>}} />
+    <View style={{ flex: 1 }}>
+      <Tab.Navigator screenOptions={{ headerShown: true }}>
+        <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: ({}) => <Ionicons name="home"></Ionicons> }} />
         <Tab.Screen
           name="CategoryManage"
-          options={{tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons>}}
+          options={{ tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons> }}
           component={CategoryManage}
-          listeners={({navigation, route}) => ({
+          listeners={({ navigation, route }) => ({
             tabPress: (e) => {
               handleModalClick();
             },
@@ -78,7 +78,7 @@ function HomePage() {
             tabBarIcon: ({}) => <Ionicons name="car-sport"></Ionicons>,
           }}
           component={VehicleCRUD}
-          listeners={({navigation, route}) => ({
+          listeners={({ navigation, route }) => ({
             tabPress: (e) => {
               handleModalClick();
             },

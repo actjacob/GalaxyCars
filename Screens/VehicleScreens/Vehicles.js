@@ -7,8 +7,7 @@ import VehicleDetail from "./VehicleDetail";
 function Vehicles({ route, navigation }) {
   const selectedCategoryId = route.params?.id;
 
-  const { data, isloading } =
-    useGetVehiclesByCategoryIdQuery(selectedCategoryId);
+  const { data, isloading } = useGetVehiclesByCategoryIdQuery(selectedCategoryId);
   const Navigation = useNavigation();
 
   const handlePressClick = (id) => {
@@ -31,10 +30,7 @@ function Vehicles({ route, navigation }) {
         data={data?.vehicles} //data.vehicles :[]
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.itemContainer}
-            onPress={() => handlePressClick(item.id)}
-          >
+          <TouchableOpacity style={styles.itemContainer} onPress={() => handlePressClick(item.id)}>
             <Image source={{ uri: item.imageUrl }} style={styles.image}></Image>
             <View style={styles.textContainer}>
               <Text style={styles.brandText}> {item.brand} </Text>

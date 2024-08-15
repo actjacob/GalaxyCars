@@ -1,9 +1,9 @@
-import {Text, View, StyleSheet, FlatList} from "react-native";
-import {useGetAllCategoryQuery} from "../Apis/categoryApi";
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import { useGetAllCategoryQuery } from "../Apis/categoryApi";
 import CategoryItem from "./CategoryItem";
 
 function CategoryList() {
-  const {data, isloading} = useGetAllCategoryQuery(null);
+  const { data, isloading } = useGetAllCategoryQuery(null);
 
   if (isloading) {
     return (
@@ -15,7 +15,7 @@ function CategoryList() {
 
   return (
     <>
-      <FlatList data={data} keyExtractor={(item) => item.id.toString()} renderItem={({item}) => <CategoryItem item={item}></CategoryItem>}></FlatList>
+      <FlatList data={data} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <CategoryItem item={item}></CategoryItem>}></FlatList>
     </>
   );
 }

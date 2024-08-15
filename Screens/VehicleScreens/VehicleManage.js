@@ -1,10 +1,12 @@
-import {Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Button, Alert} from "react-native";
-import {useGetAllVehicleQuery, useRemoveVehicleMutation} from "../../Apis/vehicleApi";
-import {useState} from "react";
-import {useNavigation} from "@react-navigation/native";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Button } from "react-native";
+import { useGetAllVehicleQuery, useRemoveVehicleMutation } from "../../Apis/vehicleApi";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 function VehicleManage() {
-  const {data, isloading} = useGetAllVehicleQuery();
+  const [vehicleModel, setVehicleModel] = useState({});
+  const { data, isloading } = useGetAllVehicleQuery();
+  const [RemoveVehicle] = useRemoveVehicleMutation();
   const Navigation = useNavigation();
   if (isloading) {
     return (
@@ -14,22 +16,46 @@ function VehicleManage() {
     );
   }
 
+  const removeVehicleHandler = (vehicleId) => {
+    setVehicleModel(data);
+    var response = vehicleModel.find((x) => x.id === vehicleId);
+    console.log("response");
+    console.log(response);
+
+    Alert.alert(`${response ? response.brand : ""} -${response ? response.model : ""}`, "Do You Really Remove This Vehicle?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => RemoveVehicle(vehicleId) },
+    ]);
+  };
+
+  const handleAddOrUpdate = (vehicleId) => {
+    console.log(vehicleId);
+    Navigation.navigate("AddOrUpdate", {
+      vehicleId: vehicleId,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         data={data} //data.vehicles :[]
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({item}) => (
-          <TouchableOpacity style={styles.itemContainer}>
-            <Image source={{uri: item.imageUrl}} style={styles.image}></Image>
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.itemContainer} onPress={() => handleAddOrUpdate(item.id)}>
+            <Image source={{ uri: item.imageUrl }} style={styles.image}></Image>
             <View style={styles.textContainer}>
               <Text style={styles.brandText}> {item.brand} </Text>
               <Text style={styles.modelText}> {item.model} </Text>
             </View>
+            <Button title="Remove" onPress={() => removeVehicleHandler(item.id)}></Button>
           </TouchableOpacity>
         )}
       ></FlatList>
-      <Button title="Create Vehicle"></Button>
+      <Button title="Create Vehicle" onPress={() => handleAddOrUpdate()}></Button>
     </View>
   );
 }
