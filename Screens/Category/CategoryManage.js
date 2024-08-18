@@ -17,8 +17,6 @@ function CategoryManage() {
   }
 
   const handleCategoryClick = (categoryId) => {
-    console.log("categoryId");
-    console.log(categoryId);
     Navigation.navigate("CategoryAddOrUpdate", { categoryId: categoryId });
   };
 
