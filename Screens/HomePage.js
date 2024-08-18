@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import VehicleManage from "./VehicleScreens/VehicleManage";
 import VehicleAddOrUpdate from "./VehicleScreens/VehicleAddOrUpdate";
 import VehicleCRUD from "./VehicleScreens/VehicleCRUD";
+import CategoryCRUD from "./Category/CategoryCRUD";
 
 function HomePage() {
   const Tab = createBottomTabNavigator();
@@ -61,11 +62,15 @@ function HomePage() {
   return (
     <View style={{ flex: 1 }}>
       <Tab.Navigator screenOptions={{ headerShown: true }}>
-        <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: ({}) => <Ionicons name="home"></Ionicons> }} />
         <Tab.Screen
-          name="CategoryManage"
+          name="Home"
+          component={Home}
+          options={{ tabBarIcon: ({}) => <Ionicons name="home"></Ionicons> }}
+        />
+        <Tab.Screen
+          name="CategoryCRUD"
           options={{ tabBarIcon: ({}) => <Ionicons name="albums"></Ionicons> }}
-          component={CategoryManage}
+          component={CategoryCRUD}
           listeners={({ navigation, route }) => ({
             tabPress: (e) => {
               handleModalClick();
@@ -88,10 +93,16 @@ function HomePage() {
       <Modal visible={visibleModal}>
         <View style={styles.viewStyleOne}>
           <View style={styles.viewStyleTwo}>
-            <TextInput placeholder="Enter Your Mail" onChangeText={inputChangeHandler.bind(this, "email")}></TextInput>
+            <TextInput
+              placeholder="Enter Your Mail"
+              onChangeText={inputChangeHandler.bind(this, "email")}
+            ></TextInput>
           </View>
           <View style={styles.viewStyleTwo}>
-            <TextInput placeholder="Enter Your Password" onChangeText={inputChangeHandler.bind(this, "password")}></TextInput>
+            <TextInput
+              placeholder="Enter Your Password"
+              onChangeText={inputChangeHandler.bind(this, "password")}
+            ></TextInput>
           </View>
         </View>
         <Button onPress={checkRoleClick} title="Check Role"></Button>
