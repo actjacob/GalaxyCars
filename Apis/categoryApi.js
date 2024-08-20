@@ -4,7 +4,7 @@ import { useGetVehicleByIdQuery } from "./vehicleApi";
 export const categoryApi = createApi({
   reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://8088-193-140-242-120.ngrok-free.app/api/",
+    baseUrl: "https://dea4-193-140-242-120.ngrok-free.app/api/",
   }),
 
   endpoints: (builder) => ({
@@ -40,6 +40,12 @@ export const categoryApi = createApi({
         method: "GET",
       }),
     }),
+    GetCategoryById: builder.query({
+      query: (categoryId) => ({
+        url: `Category/${categoryId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -49,5 +55,6 @@ export const {
   useRemoveCategoryMutation,
   useUpdateCategoryMutation,
   useGetVehiclesByCategoryIdQuery,
+  useGetCategoryByIdQuery,
 } = categoryApi;
 export default categoryApi;
