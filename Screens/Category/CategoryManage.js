@@ -5,10 +5,10 @@ import { useGetAllCategoryQuery } from "../../Apis/categoryApi";
 import { useState } from "react";
 
 function CategoryManage() {
-  const { data, isloading } = useGetAllCategoryQuery();
+  const { data, isLoading } = useGetAllCategoryQuery();
   const { category, setCategory } = useState();
   const Navigation = useNavigation();
-  if (isloading) {
+  if (isLoading) {
     return (
       <View>
         <Text>...Loading</Text>

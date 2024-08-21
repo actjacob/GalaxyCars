@@ -7,7 +7,7 @@ import VehicleDetail from "./VehicleDetail";
 function Vehicles({ route, navigation }) {
   const selectedCategoryId = route.params?.id;
 
-  const { data, isloading } = useGetVehiclesByCategoryIdQuery(selectedCategoryId);
+  const { data, isLoading } = useGetVehiclesByCategoryIdQuery(selectedCategoryId);
   const Navigation = useNavigation();
 
   const handlePressClick = (id) => {
@@ -16,7 +16,7 @@ function Vehicles({ route, navigation }) {
     });
   };
 
-  if (isloading) {
+  if (isLoading) {
     return (
       <>
         <Text> Loading...</Text>

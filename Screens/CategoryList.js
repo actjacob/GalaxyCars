@@ -3,9 +3,9 @@ import { useGetAllCategoryQuery } from "../Apis/categoryApi";
 import CategoryItem from "./CategoryItem";
 
 function CategoryList() {
-  const { data, isloading } = useGetAllCategoryQuery(null);
+  const { data, isLoading } = useGetAllCategoryQuery(null);
 
-  if (isloading) {
+  if (isLoading) {
     return (
       <View>
         <Text>Loading...</Text>

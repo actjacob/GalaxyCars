@@ -5,10 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 
 function VehicleManage() {
   const [vehicleModel, setVehicleModel] = useState({});
-  const { data, isloading } = useGetAllVehicleQuery();
+  const { data, isLoading } = useGetAllVehicleQuery();
   const [RemoveVehicle] = useRemoveVehicleMutation();
   const Navigation = useNavigation();
-  if (isloading) {
+  if (isLoading) {
     return (
       <View>
         <Text> ...Loading Vehicles </Text>
@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    marginleft: 16,
+    marginLeft: 16,
   },
   textContainer: {
     flex: 1,
-    marginleft: 16,
+    marginLeft: 16,
   },
   brandText: {
     fontSize: 18,

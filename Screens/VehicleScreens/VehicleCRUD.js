@@ -7,7 +7,7 @@ function VehicleCRUD() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator initalRouteName="VehicleManage" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="VehicleManage" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="VehicleManage" component={VehicleManage}></Stack.Screen>
       <Stack.Screen name="AddOrUpdate" component={VehicleAddOrUpdate}></Stack.Screen>
     </Stack.Navigator>

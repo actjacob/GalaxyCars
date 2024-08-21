@@ -2,10 +2,12 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useCreateCategoryMutation, useGetCategoryByIdQuery, useUpdateCategoryMutation } from "../../Apis/categoryApi";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 function CategoryAddOrUpdate({ route, navigation }) {
+  const Navigation = useNavigation();
   const categoryId = route.params?.categoryId;
-  const { data, isloading } = useGetCategoryByIdQuery(categoryId);
+  const { data, isLoading } = useGetCategoryByIdQuery(categoryId);
   const [UpdateCategory] = useUpdateCategoryMutation();
   const [CreateCategory] = useCreateCategoryMutation();
   const [categoryModel, setCategoryModel] = useState({
@@ -13,7 +15,7 @@ function CategoryAddOrUpdate({ route, navigation }) {
     categoryDescription: data ? data.categoryDescription : "",
   });
 
-  if (isloading && categoryId !== undefined) {
+  if (isLoading && categoryId !== undefined) {
     return (
       <View>
         <Text>...Loading</Text>
@@ -33,9 +35,28 @@ function CategoryAddOrUpdate({ route, navigation }) {
   // public string CategoryName { get; set; }
   // public string CategoryDescription { get; set; }
 
-  const addOrUpdateCategory = () => {
+  const addOrUpdateCategory = async () => {
+    var response;
     if (categoryId !== undefined) {
+      setCategoryModel({
+        categoryName: data.categoryName,
+        categoryDescription: data.categoryDescription,
+      });
+      console.log("setCategoryModel");
+      console.log(categoryModel);
+
+      const categoryUpdateModel = {
+        categoryId: categoryId,
+        categoryModel: {
+          categoryName: categoryModel.categoryName,
+          categoryDescription: categoryModel.categoryDescription,
+        },
+      };
+      response = await UpdateCategory(categoryUpdateModel);
+      Navigation.goBack();
     } else {
+      response = CreateCategory(categoryModel);
+      Navigation.goBack();
     }
   };
 
@@ -47,7 +68,7 @@ function CategoryAddOrUpdate({ route, navigation }) {
       <View style={styles.inputContainer}>
         <TextInput style={styles.input} placeholder="Category Description" defaultValue={data ? data.categoryDescription : ""} onChangeText={(value) => inputChangeHandler("categoryDescription", value)}></TextInput>
       </View>
-      <Button title="Save"></Button>
+      <Button title="Save" onPress={addOrUpdateCategory}></Button>
     </View>
   );
 }

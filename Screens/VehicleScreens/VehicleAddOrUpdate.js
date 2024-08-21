@@ -1,17 +1,13 @@
 import { View, Text, StyleSheet, Button } from "react-native";
-import {
-  useCreateVehicleMutation,
-  useGetVehicleByIdQuery,
-  useUpdateVehicleMutation,
-} from "../../Apis/vehicleApi";
+import { useCreateVehicleMutation, useGetVehicleByIdQuery, useUpdateVehicleMutation } from "../../Apis/vehicleApi";
 import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 function VehicleAddOrUpdate({ route, navigation }) {
+  const Navigation = useNavigation();
   const vehicleId = route.params?.vehicleId;
   const { data, isLoading } = useGetVehicleByIdQuery(vehicleId);
-  const Navigation = useNavigation();
   const [UpdateVehicle] = useUpdateVehicleMutation();
   const [CreateVehicle] = useCreateVehicleMutation();
   const [vehicleModel, setVehicleModel] = useState({
@@ -24,7 +20,7 @@ function VehicleAddOrUpdate({ route, navigation }) {
     categoryId: data ? data.categoryId : "",
   });
 
-  if (isLoading) {
+  if (isLoading && vehicleId !== undefined) {
     return (
       <View>
         <Text> ...Loading Vehicles </Text>
@@ -42,9 +38,8 @@ function VehicleAddOrUpdate({ route, navigation }) {
   }
 
   const handleVehicleClick = async () => {
+    var response;
     if (vehicleId !== undefined) {
-      console.log("vehicleModel");
-      console.log(vehicleModel);
       setVehicleModel({
         brand: data.brand,
         model: data.model,
@@ -54,8 +49,10 @@ function VehicleAddOrUpdate({ route, navigation }) {
         description: data.description,
         categoryId: data.categoryId,
       });
+      console.log("vehicleModel");
+      console.log(vehicleModel);
 
-      const updateVehicleModel = {
+      const vehicleUpdateModel = {
         vehicleId: vehicleId,
         vehicleModel: {
           brand: vehicleModel.brand,
@@ -68,10 +65,10 @@ function VehicleAddOrUpdate({ route, navigation }) {
         },
       };
 
-      var response = await UpdateVehicle(updateVehicleModel);
+      response = await UpdateVehicle(vehicleUpdateModel);
       Navigation.goBack();
     } else {
-      CreateVehicle(vehicleModel);
+      response = await CreateVehicle(vehicleModel);
       Navigation.goBack();
     }
   };
@@ -87,61 +84,25 @@ function VehicleAddOrUpdate({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Brand"
-          defaultValue={data ? data.brand : ""}
-          onChangeText={(value) => inputChangeHandler("brand", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="Brand" defaultValue={data ? data.brand : ""} onChangeText={(value) => inputChangeHandler("brand", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Model"
-          defaultValue={data ? data.model : ""}
-          onChangeText={(value) => inputChangeHandler("model", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="Model" defaultValue={data ? data.model : ""} onChangeText={(value) => inputChangeHandler("model", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="ModelYear"
-          defaultValue={data ? data.modelYear : ""}
-          onChangeText={(value) => inputChangeHandler("modelYear", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="ModelYear" defaultValue={data ? data.modelYear : ""} onChangeText={(value) => inputChangeHandler("modelYear", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Price"
-          defaultValue={data ? data.price.toString() : ""}
-          keyboardType="numeric"
-          onChangeText={(value) => inputChangeHandler("price", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="Price" defaultValue={data ? data.price.toString() : ""} keyboardType="numeric" onChangeText={(value) => inputChangeHandler("price", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="ImageUrl"
-          defaultValue={data ? data.imageUrl : ""}
-          onChangeText={(value) => inputChangeHandler("imageUrl", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="ImageUrl" defaultValue={data ? data.imageUrl : ""} onChangeText={(value) => inputChangeHandler("imageUrl", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Description"
-          defaultValue={data ? data.description : ""}
-          onChangeText={(value) => inputChangeHandler("description", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="Description" defaultValue={data ? data.description : ""} onChangeText={(value) => inputChangeHandler("description", value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="CategoryId"
-          defaultValue={data ? data.categoryId : ""}
-          onChangeText={(value) => inputChangeHandler("categoryId", value)}
-        ></TextInput>
+        <TextInput style={styles.input} placeholder="CategoryId" defaultValue={data ? data.categoryId : ""} onChangeText={(value) => inputChangeHandler("categoryId", value)}></TextInput>
       </View>
       <View style={styles.buttonContainer}>
         <Button title="Save" onPress={handleVehicleClick}></Button>
