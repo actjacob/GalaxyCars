@@ -1,7 +1,7 @@
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Button } from "react-native";
-import { useGetAllVehicleQuery, useRemoveVehicleMutation } from "../../Apis/vehicleApi";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Button } from 'react-native';
+import { useGetAllVehicleQuery, useRemoveVehicleMutation } from '../../Apis/vehicleApi';
+import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 function VehicleManage() {
   const [vehicleModel, setVehicleModel] = useState({});
@@ -19,22 +19,22 @@ function VehicleManage() {
   const removeVehicleHandler = (vehicleId) => {
     setVehicleModel(data);
     var response = vehicleModel.find((x) => x.id === vehicleId);
-    console.log("response");
+    console.log('response');
     console.log(response);
 
-    Alert.alert(`${response ? response.brand : ""} -${response ? response.model : ""}`, "Do You Really Remove This Vehicle?", [
+    Alert.alert(`${response ? response.brand : ''} -${response ? response.model : ''}`, 'Do You Really Remove This Vehicle?', [
       {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
       },
-      { text: "OK", onPress: () => RemoveVehicle(vehicleId) },
+      { text: 'OK', onPress: () => RemoveVehicle(vehicleId) },
     ]);
   };
 
   const handleAddOrUpdate = (vehicleId) => {
     console.log(vehicleId);
-    Navigation.navigate("AddOrUpdate", {
+    Navigation.navigate('AddOrUpdate', {
       vehicleId: vehicleId,
     });
   };
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   itemContainer: {
-    backgroundColor: "#B9B9B9",
+    backgroundColor: '#B9B9B9',
     padding: 16,
     marginBottom: 8,
     borderRadius: 8,
-    flexDirection: "row",
-    alignItems: "stretch",
+    flexDirection: 'row',
+    alignItems: 'stretch',
   },
   image: {
     flex: 1,
@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
   },
   brandText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   modelText: {
     fontSize: 15,
-    color: "#555",
+    color: '#555',
   },
   removeButton: {
-    color: "red",
+    color: 'red',
   },
 });

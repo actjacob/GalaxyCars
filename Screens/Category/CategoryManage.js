@@ -1,12 +1,13 @@
-import { Pressable, Text, View, StyleSheet, FlatList, Button } from "react-native";
-import { Card, Title, Paragraph } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import { useGetAllCategoryQuery } from "../../Apis/categoryApi";
-import { useState } from "react";
+import { Pressable, Text, View, StyleSheet, FlatList, Button } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { useGetAllCategoryQuery, useRemoveCategoryMutation } from '../../Apis/categoryApi';
+import { useState } from 'react';
 
 function CategoryManage() {
   const { data, isLoading } = useGetAllCategoryQuery();
   const { category, setCategory } = useState();
+  const [RemoveCategory] = useRemoveCategoryMutation();
   const Navigation = useNavigation();
   if (isLoading) {
     return (
@@ -17,7 +18,11 @@ function CategoryManage() {
   }
 
   const handleCategoryClick = (categoryId) => {
-    Navigation.navigate("CategoryAddOrUpdate", { categoryId: categoryId });
+    Navigation.navigate('CategoryAddOrUpdate', { categoryId: categoryId });
+  };
+  const removeCategoryHandler = async (categoryId) => {
+    console.log('trigger remove category handler');
+    var response = await RemoveCategory(categoryId);
   };
 
   return (
@@ -32,11 +37,14 @@ function CategoryManage() {
                 <Title>{item.categoryName} </Title>
                 <Paragraph>Description : {item.categoryDescription} </Paragraph>
               </Card.Content>
+              <View style={styles.button}>
+                <Button title="Remove" onPress={() => handleCategoryClick()}></Button>
+              </View>
             </Card>
           </Pressable>
         )}
       ></FlatList>
-      <Button title="Create Category" onPress={() => handleCategoryClick()}></Button>
+      <Button title="Create Category" onPress={() => removeCategoryHandler(item.id)}></Button>
     </View>
   );
 }
@@ -46,7 +54,10 @@ export default CategoryManage;
 const styles = StyleSheet.create({
   card: {
     margin: 16,
-    alignItems: "center",
-    backgroundColor: "orange",
+    alignItems: 'center',
+    backgroundColor: 'orange',
+  },
+  button: {
+    alignItems: 'center',
   },
 });

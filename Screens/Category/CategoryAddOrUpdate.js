@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useCreateCategoryMutation, useGetCategoryByIdQuery, useUpdateCategoryMutation } from "../../Apis/categoryApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 function CategoryAddOrUpdate({ route, navigation }) {
@@ -11,17 +11,27 @@ function CategoryAddOrUpdate({ route, navigation }) {
   const [UpdateCategory] = useUpdateCategoryMutation();
   const [CreateCategory] = useCreateCategoryMutation();
   const [categoryModel, setCategoryModel] = useState({
-    categoryName: data ? data.categoryName : "",
-    categoryDescription: data ? data.categoryDescription : "",
+    categoryName: "",
+    categoryDescription: "",
   });
 
-  if (isLoading && categoryId !== undefined) {
+  useEffect(() => {
+    if (data) {
+      setCategoryModel({
+        categoryName: data.categoryName,
+        categoryDescription: data.categoryDescription,
+      });
+    }
+  }, [data]);
+
+  if (isLoading) {
     return (
       <View>
         <Text>...Loading</Text>
       </View>
     );
   }
+  console.log("trigger layout");
 
   function inputChangeHandler(inputIdentifier, enteredValue) {
     setCategoryModel((currentInputValue) => {
@@ -38,10 +48,6 @@ function CategoryAddOrUpdate({ route, navigation }) {
   const addOrUpdateCategory = async () => {
     var response;
     if (categoryId !== undefined) {
-      setCategoryModel({
-        categoryName: data.categoryName,
-        categoryDescription: data.categoryDescription,
-      });
       console.log("setCategoryModel");
       console.log(categoryModel);
 
