@@ -1,8 +1,9 @@
-import { Pressable, Text, View, StyleSheet, FlatList, Button,ActivityIndicator } from 'react-native';
+import { Pressable, Text, View, StyleSheet, FlatList, Button, ActivityIndicator } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useGetAllCategoryQuery, useRemoveCategoryMutation } from '../../Apis/categoryApi';
 import { useState } from 'react';
+import * as Notifications from 'expo-notifications';
 
 function CategoryManage() {
   const { data, isLoading } = useGetAllCategoryQuery();
@@ -16,6 +17,21 @@ function CategoryManage() {
       </View>
     );
   }
+  // const removeCategoryHandler = (categoryId) => {
+  //   setCategoryModel(data);
+  //   var response = categoryModel.find((x) => x.id === categoryId);
+  //   console.log('response');
+  //   console.log(response);
+
+  //   Alert.alert(`${response ? response.brand : ''} -${response ? response.model : ''}`, 'Do You Really Remove This Category?', [
+  //     {
+  //       text: 'Cancel',
+  //       onPress: () => console.log('Cancel Pressed'),
+  //       style: 'cancel',
+  //     },
+  //     { text: 'OK', onPress: () => RemoveCategory(categoryId) },
+  //   ]);
+  // };
 
   const handleCategoryClick = (categoryId) => {
     Navigation.navigate('CategoryAddOrUpdate', { categoryId: categoryId });

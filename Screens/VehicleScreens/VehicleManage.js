@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Butto
 import { useGetAllVehicleQuery, useRemoveVehicleMutation } from '../../Apis/vehicleApi';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import * as Notifications from 'expo-notifications';
 
 function VehicleManage() {
   const [vehicleModel, setVehicleModel] = useState({});
