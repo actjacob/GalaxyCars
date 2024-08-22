@@ -1,56 +1,56 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useGetVehicleByIdQuery } from "./vehicleApi";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { useGetVehicleByIdQuery } from './vehicleApi';
 
 export const categoryApi = createApi({
-  reducerPath: "categoryApi",
+  reducerPath: 'categoryApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://32b5-193-140-242-120.ngrok-free.app/api/",
+    baseUrl: 'https://69cb-193-140-242-120.ngrok-free.app/api/',
   }),
-  tagTypes: ["category"],
+  tagTypes: ['category'],
   endpoints: (builder) => ({
     GetAllCategory: builder.query({
       query: () => ({
-        url: "Category",
-        method: "GET",
+        url: 'Category',
+        method: 'GET',
       }),
-      providesTags: ["category"],
+      providesTags: ['category'],
     }),
     CreateCategory: builder.mutation({
       query: (categoryModel) => ({
-        url: "Category",
-        method: "POST",
+        url: 'Category',
+        method: 'POST',
         body: categoryModel,
       }),
-      invalidatesTags: ["category"],
+      invalidatesTags: ['category'],
     }),
     RemoveCategory: builder.mutation({
       query: (categoryId) => ({
         url: `Category/${categoryId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["category"],
+      invalidatesTags: ['category'],
     }),
     UpdateCategory: builder.mutation({
       query: (model) => ({
         url: `Category/${model.categoryId}`,
-        method: "PUT",
+        method: 'PUT',
         body: model.categoryModel,
       }),
-      invalidatesTags: ["category"],
+      invalidatesTags: ['category'],
     }),
     GetVehiclesByCategoryId: builder.query({
       query: (categoryId) => ({
         url: `Category/GetVehicles/${categoryId}`,
-        method: "GET",
+        method: 'GET',
       }),
-      providesTags: ["category"],
+      providesTags: ['category'],
     }),
     GetCategoryById: builder.query({
       query: (categoryId) => ({
         url: `Category/${categoryId}`,
-        method: "GET",
+        method: 'GET',
       }),
-      providesTags: ["category"],
+      providesTags: ['category'],
     }),
   }),
 });

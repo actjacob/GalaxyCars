@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Button } from "react-native";
-import { TextInput } from "react-native-paper";
-import { useCreateCategoryMutation, useGetCategoryByIdQuery, useUpdateCategoryMutation } from "../../Apis/categoryApi";
-import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { useCreateCategoryMutation, useGetCategoryByIdQuery, useUpdateCategoryMutation } from '../../Apis/categoryApi';
+import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 function CategoryAddOrUpdate({ route, navigation }) {
   const Navigation = useNavigation();
@@ -11,8 +11,8 @@ function CategoryAddOrUpdate({ route, navigation }) {
   const [UpdateCategory] = useUpdateCategoryMutation();
   const [CreateCategory] = useCreateCategoryMutation();
   const [categoryModel, setCategoryModel] = useState({
-    categoryName: "",
-    categoryDescription: "",
+    categoryName: '',
+    categoryDescription: '',
   });
 
   useEffect(() => {
@@ -27,11 +27,11 @@ function CategoryAddOrUpdate({ route, navigation }) {
   if (isLoading) {
     return (
       <View>
-        <Text>...Loading</Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }
-  console.log("trigger layout");
+  console.log('trigger layout');
 
   function inputChangeHandler(inputIdentifier, enteredValue) {
     setCategoryModel((currentInputValue) => {
@@ -48,7 +48,7 @@ function CategoryAddOrUpdate({ route, navigation }) {
   const addOrUpdateCategory = async () => {
     var response;
     if (categoryId !== undefined) {
-      console.log("setCategoryModel");
+      console.log('setCategoryModel');
       console.log(categoryModel);
 
       const categoryUpdateModel = {
@@ -69,10 +69,10 @@ function CategoryAddOrUpdate({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Category Name" defaultValue={data ? data.categoryName : ""} onChangeText={(value) => inputChangeHandler("categoryName", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Category Name" defaultValue={data ? data.categoryName : ''} onChangeText={(value) => inputChangeHandler('categoryName', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Category Description" defaultValue={data ? data.categoryDescription : ""} onChangeText={(value) => inputChangeHandler("categoryDescription", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Category Description" defaultValue={data ? data.categoryDescription : ''} onChangeText={(value) => inputChangeHandler('categoryDescription', value)}></TextInput>
       </View>
       <Button title="Save" onPress={addOrUpdateCategory}></Button>
     </View>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   input: {
     height: 30,
 
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 1,
     padding: 10,
   },

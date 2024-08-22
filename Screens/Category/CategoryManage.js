@@ -1,4 +1,4 @@
-import { Pressable, Text, View, StyleSheet, FlatList, Button } from 'react-native';
+import { Pressable, Text, View, StyleSheet, FlatList, Button,ActivityIndicator } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useGetAllCategoryQuery, useRemoveCategoryMutation } from '../../Apis/categoryApi';
@@ -12,7 +12,7 @@ function CategoryManage() {
   if (isLoading) {
     return (
       <View>
-        <Text>...Loading</Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }

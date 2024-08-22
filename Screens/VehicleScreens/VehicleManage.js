@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Button } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, Image, Alert, Button, ActivityIndicator } from 'react-native';
 import { useGetAllVehicleQuery, useRemoveVehicleMutation } from '../../Apis/vehicleApi';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -11,7 +11,7 @@ function VehicleManage() {
   if (isLoading) {
     return (
       <View>
-        <Text> ...Loading Vehicles </Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }

@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet, Image } from "react-native";
-import { useGetVehiclesByCategoryIdQuery } from "../../Apis/categoryApi";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
-import VehicleDetail from "./VehicleDetail";
+import { Text, View, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { useGetVehiclesByCategoryIdQuery } from '../../Apis/categoryApi';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import VehicleDetail from './VehicleDetail';
 
 function Vehicles({ route, navigation }) {
   const selectedCategoryId = route.params?.id;
@@ -19,7 +19,7 @@ function Vehicles({ route, navigation }) {
   if (isLoading) {
     return (
       <>
-        <Text> Loading...</Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </>
     );
   }
@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   itemContainer: {
-    backgroundColor: "#B9B9B9",
+    backgroundColor: '#B9B9B9',
     padding: 16,
     marginBottom: 8,
     borderRadius: 8,
-    flexDirection: "row",
-    alignItems: "stretch",
+    flexDirection: 'row',
+    alignItems: 'stretch',
   },
   image: {
     flex: 1,
@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
   },
   brandText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   modelText: {
     fontSize: 15,
-    color: "#555",
+    color: '#555',
   },
 });

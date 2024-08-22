@@ -1,52 +1,52 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const VehicleApi = createApi({
-  reducerPath: "VehicleApi",
+  reducerPath: 'VehicleApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://32b5-193-140-242-120.ngrok-free.app/api/",
+    baseUrl: 'https://69cb-193-140-242-120.ngrok-free.app/api/',
   }),
-  tagTypes: ["vehicle"],
+  tagTypes: ['vehicle'],
   endpoints: (builder) => ({
     GetAllVehicle: builder.query({
       query: () => ({
-        url: "Vehicle/GetAllVehicle",
-        method: "GET",
+        url: 'Vehicle/GetAllVehicle',
+        method: 'GET',
       }),
-      providesTags: ["vehicle"],
+      providesTags: ['vehicle'],
     }),
 
     CreateVehicle: builder.mutation({
       query: (VehicleModel) => ({
-        url: "Vehicle/CreateVehicle",
-        method: "POST",
+        url: 'Vehicle/CreateVehicle',
+        method: 'POST',
         body: VehicleModel,
       }),
-      invalidatesTags: ["vehicle"],
+      invalidatesTags: ['vehicle'],
     }),
 
     RemoveVehicle: builder.mutation({
       query: (vehicleId) => ({
         url: `Vehicle/DeleteVehicle/${vehicleId}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["vehicle"],
+      invalidatesTags: ['vehicle'],
     }),
 
     UpdateVehicle: builder.mutation({
       query: (updateModel) => ({
         url: `Vehicle/UpdateVehicle/${updateModel.vehicleId}`,
-        method: "PUT",
+        method: 'PUT',
         body: updateModel.vehicleModel,
       }),
-      invalidatesTags: ["vehicle"],
+      invalidatesTags: ['vehicle'],
     }),
 
     GetVehicleById: builder.query({
       query: (vehicleId) => ({
         url: `Vehicle/Vehicle/${vehicleId}`,
-        method: "GET",
+        method: 'GET',
       }),
-      providesTags: ["vehicle"],
+      providesTags: ['vehicle'],
     }),
   }),
 });

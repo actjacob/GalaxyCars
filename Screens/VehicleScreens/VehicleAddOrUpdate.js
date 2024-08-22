@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Button } from "react-native";
-import { useCreateVehicleMutation, useGetVehicleByIdQuery, useUpdateVehicleMutation } from "../../Apis/vehicleApi";
-import { TextInput } from "react-native-paper";
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import { useCreateVehicleMutation, useGetVehicleByIdQuery, useUpdateVehicleMutation } from '../../Apis/vehicleApi';
+import { TextInput } from 'react-native-paper';
+import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 function VehicleAddOrUpdate({ route, navigation }) {
   const Navigation = useNavigation();
@@ -11,19 +11,19 @@ function VehicleAddOrUpdate({ route, navigation }) {
   const [UpdateVehicle] = useUpdateVehicleMutation();
   const [CreateVehicle] = useCreateVehicleMutation();
   const [vehicleModel, setVehicleModel] = useState({
-    brand: data ? data.brand : "",
-    model: data ? data.model : "",
-    modelYear: data ? data.modelYear : "",
+    brand: data ? data.brand : '',
+    model: data ? data.model : '',
+    modelYear: data ? data.modelYear : '',
     price: data ? data.price : 0,
-    imageUrl: data ? data.imageUrl : "",
-    description: data ? data.description : "",
-    categoryId: data ? data.categoryId : "",
+    imageUrl: data ? data.imageUrl : '',
+    description: data ? data.description : '',
+    categoryId: data ? data.categoryId : '',
   });
 
   if (isLoading && vehicleId !== undefined) {
     return (
       <View>
-        <Text> ...Loading Vehicles </Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }
@@ -49,7 +49,7 @@ function VehicleAddOrUpdate({ route, navigation }) {
         description: data.description,
         categoryId: data.categoryId,
       });
-      console.log("vehicleModel");
+      console.log('vehicleModel');
       console.log(vehicleModel);
 
       const vehicleUpdateModel = {
@@ -84,25 +84,25 @@ function VehicleAddOrUpdate({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Brand" defaultValue={data ? data.brand : ""} onChangeText={(value) => inputChangeHandler("brand", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Brand" defaultValue={data ? data.brand : ''} onChangeText={(value) => inputChangeHandler('brand', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Model" defaultValue={data ? data.model : ""} onChangeText={(value) => inputChangeHandler("model", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Model" defaultValue={data ? data.model : ''} onChangeText={(value) => inputChangeHandler('model', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="ModelYear" defaultValue={data ? data.modelYear : ""} onChangeText={(value) => inputChangeHandler("modelYear", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="ModelYear" defaultValue={data ? data.modelYear : ''} onChangeText={(value) => inputChangeHandler('modelYear', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Price" defaultValue={data ? data.price.toString() : ""} keyboardType="numeric" onChangeText={(value) => inputChangeHandler("price", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Price" defaultValue={data ? data.price.toString() : ''} keyboardType="numeric" onChangeText={(value) => inputChangeHandler('price', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="ImageUrl" defaultValue={data ? data.imageUrl : ""} onChangeText={(value) => inputChangeHandler("imageUrl", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="ImageUrl" defaultValue={data ? data.imageUrl : ''} onChangeText={(value) => inputChangeHandler('imageUrl', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Description" defaultValue={data ? data.description : ""} onChangeText={(value) => inputChangeHandler("description", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Description" defaultValue={data ? data.description : ''} onChangeText={(value) => inputChangeHandler('description', value)}></TextInput>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="CategoryId" defaultValue={data ? data.categoryId : ""} onChangeText={(value) => inputChangeHandler("categoryId", value)}></TextInput>
+        <TextInput style={styles.input} placeholder="CategoryId" defaultValue={data ? data.categoryId : ''} onChangeText={(value) => inputChangeHandler('categoryId', value)}></TextInput>
       </View>
       <View style={styles.buttonContainer}>
         <Button title="Save" onPress={handleVehicleClick}></Button>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   input: {
     height: 30,
 
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 1,
     padding: 10,
   },

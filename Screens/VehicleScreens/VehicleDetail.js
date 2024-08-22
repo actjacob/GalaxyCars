@@ -1,6 +1,6 @@
-import { Text, View, StyleSheet } from "react-native";
-import { useGetVehicleByIdQuery } from "../../Apis/vehicleApi";
-import { Card, Title, Paragraph } from "react-native-paper";
+import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { useGetVehicleByIdQuery } from '../../Apis/vehicleApi';
+import { Card, Title, Paragraph } from 'react-native-paper';
 
 function VehicleDetail({ route, navigation }) {
   const vehicleId = route.params?.vehicleId;
@@ -9,7 +9,7 @@ function VehicleDetail({ route, navigation }) {
   if (isLoading) {
     return (
       <View>
-        <Text>...Loading</Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }
@@ -19,8 +19,8 @@ function VehicleDetail({ route, navigation }) {
       <Card.Cover style={styles.coverImage} source={{ uri: data.imageUrl }}></Card.Cover>
       <Card.Content>
         <Title style={styles.Title}>
-          {" "}
-          {data.brand} - {data.model}{" "}
+          {' '}
+          {data.brand} - {data.model}{' '}
         </Title>
         <Paragraph style={styles.PriceParagraph}> ${data.price.toFixed(2)} </Paragraph>
         <Paragraph style={styles.Paragraph}> {data.description} </Paragraph>
@@ -39,26 +39,26 @@ const styles = StyleSheet.create({
   },
   Title: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 8,
-    textAlign: "center",
+    textAlign: 'center',
   },
   Paragraph: {
     fontSize: 16,
     marginBottom: 4,
-    textAlign: "center",
+    textAlign: 'center',
   },
   PriceParagraph: {
     fontSize: 16,
     marginBottom: 4,
-    textAlign: "center",
-    color: "red",
+    textAlign: 'center',
+    color: 'red',
   },
   ModelParagraph: {
     fontSize: 16,
     marginBottom: 4,
-    textAlign: "center",
-    fontStyle: "italic",
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
 });
 
